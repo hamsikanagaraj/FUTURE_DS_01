@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Sales Performance Analytics | Executive Dashboard</title>
+    <meta name="description" content="Client-ready executive sales performance analytics dashboard featuring revenue trends, product category profitability, regional variance, and discount optimization strategy.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-layout">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar" id="sidebar-nav">
+            <div class="brand">
+                <div class="brand-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="20" x2="18" y2="10"></line>
+                        <line x1="12" y1="20" x2="12" y2="4"></line>
+                        <line x1="6" y1="20" x2="6" y2="14"></line>
+                    </svg>
+                </div>
+                <div class="brand-text">
+                    <h2>ApexAnalytics</h2>
+                    <span>Future Interns • Task 1</span>
+                </div>
+            </div>
+
+            <nav class="nav-menu">
+                <button class="nav-item active" data-tab="tab-overview" id="nav-btn-overview">
+                    <span class="icon">📊</span>
+                    <span>Executive Summary</span>
+                </button>
+                <button class="nav-item" data-tab="tab-trends" id="nav-btn-trends">
+                    <span class="icon">📈</span>
+                    <span>Revenue Trajectory</span>
+                </button>
+                <button class="nav-item" data-tab="tab-products" id="nav-btn-products">
+                    <span class="icon">📦</span>
+                    <span>Category & Products</span>
+                </button>
+                <button class="nav-item" data-tab="tab-regional" id="nav-btn-regional">
+                    <span class="icon">🗺️</span>
+                    <span>Regional Markets</span>
+                </button>
+                <button class="nav-item" data-tab="tab-discounts" id="nav-btn-discounts">
+                    <span class="icon">⚠️</span>
+                    <span>Discount Profit Leaks</span>
+                </button>
+                <button class="nav-item" data-tab="tab-strategy" id="nav-btn-strategy">
+                    <span class="icon">💡</span>
+                    <span>Turnaround Strategy</span>
+                </button>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="intern-badge">
+                    <span class="badge-dot"></span>
+                    <div>
+                        <strong>Data Science & Analytics</strong>
+                        <p>Business Advisory Report</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Top Header & Filter Bar -->
+            <header class="top-header">
+                <div>
+                    <h1 class="page-title" id="page-main-heading">Business Sales Performance Analytics</h1>
+                    <p class="page-subtitle">Strategic decision support system evaluating 9,994 transactions ($2.30M Revenue)</p>
+                </div>
+
+                <div class="filter-controls">
+                    <div class="filter-group">
+                        <label for="filter-year">Year</label>
+                        <select id="filter-year" class="custom-select">
+                            <option value="All">All Years (2015-2018)</option>
+                            <option value="2015">2015</option>
+                            <option value="2016">2016</option>
+                            <option value="2017">2017</option>
+                            <option value="2018">2018</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="filter-region">Region</label>
+                        <select id="filter-region" class="custom-select">
+                            <option value="All">All Regions</option>
+                            <option value="West">West</option>
+                            <option value="East">East</option>
+                            <option value="Central">Central</option>
+                            <option value="South">South</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="filter-category">Category</label>
+                        <select id="filter-category" class="custom-select">
+                            <option value="All">All Categories</option>
+                            <option value="Technology">Technology</option>
+                            <option value="Office Supplies">Office Supplies</option>
+                            <option value="Furniture">Furniture</option>
+                        </select>
+                    </div>
+                </div>
+            </header>
+
+            <!-- KPI Metric Banners -->
+            <section class="kpi-grid" id="kpi-summary-cards">
+                <div class="kpi-card accent-blue">
+                    <div class="kpi-header">
+                        <span class="kpi-label">TOTAL REVENUE</span>
+                        <span class="kpi-tag tag-blue">Gross Sales</span>
+                    </div>
+                    <div class="kpi-value" id="kpi-val-revenue">$2,297,201</div>
+                    <div class="kpi-footer text-positive">
+                        <span>↑ +51.4% Growth (2015 → 2018)</span>
+                    </div>
+                </div>
+
+                <div class="kpi-card accent-emerald">
+                    <div class="kpi-header">
+                        <span class="kpi-label">NET PROFIT</span>
+                        <span class="kpi-tag tag-emerald">Bottom-Line</span>
+                    </div>
+                    <div class="kpi-value" id="kpi-val-profit">$286,397</div>
+                    <div class="kpi-footer text-positive">
+                        <span>↑ +88.6% Profit Expansion</span>
+                    </div>
+                </div>
+
+                <div class="kpi-card accent-indigo">
+                    <div class="kpi-header">
+                        <span class="kpi-label">PROFIT MARGIN</span>
+                        <span class="kpi-tag tag-indigo">Return on Sales</span>
+                    </div>
+                    <div class="kpi-value" id="kpi-val-margin">12.5%</div>
+                    <div class="kpi-footer text-muted">
+                        <span>Benchmark Goal: 15.0%</span>
+                    </div>
+                </div>
+
+                <div class="kpi-card accent-purple">
+                    <div class="kpi-header">
+                        <span class="kpi-label">UNIQUE ORDERS</span>
+                        <span class="kpi-tag tag-purple">Volume</span>
+                    </div>
+                    <div class="kpi-value" id="kpi-val-orders">5,009</div>
+                    <div class="kpi-footer text-muted">
+                        <span>Across 793 Accounts</span>
+                    </div>
+                </div>
+
+                <div class="kpi-card accent-cyan">
+                    <div class="kpi-header">
+                        <span class="kpi-label">AVG ORDER VALUE</span>
+                        <span class="kpi-tag tag-cyan">AOV</span>
+                    </div>
+                    <div class="kpi-value" id="kpi-val-aov">$458.61</div>
+                    <div class="kpi-footer text-muted">
+                        <span>3.8 Units / Order</span>
+                    </div>
+                </div>
+
+                <div class="kpi-card accent-rose">
+                    <div class="kpi-header">
+                        <span class="kpi-label">PROFIT EROSION</span>
+                        <span class="kpi-tag tag-rose">Loss Exposure</span>
+                    </div>
+                    <div class="kpi-value text-danger" id="kpi-val-loss">-$156,131</div>
+                    <div class="kpi-footer text-danger">
+                        <span>18.7% of all orders lost money</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 1: EXECUTIVE OVERVIEW -->
+            <section class="tab-pane active" id="tab-overview">
+                <div class="grid-2-cols">
+                    <div class="chart-card">
+                        <div class="card-header">
+                            <div>
+                                <h3 class="card-title">Monthly Revenue & Net Profit Trajectory</h3>
+                                <p class="card-desc">Seasonal surge peaking every Q4 (November & December)</p>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="chart-monthly-trend"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="chart-card">
+                        <div class="card-header">
+                            <div>
+                                <h3 class="card-title">Category Revenue vs Profit Margin</h3>
+                                <p class="card-desc">Furniture delivers high volume ($742k) but dismal margin (2.5%)</p>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="chart-category-perf"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Executive Insight Callout Box -->
+                <div class="insight-banner">
+                    <div class="insight-icon">💡</div>
+                    <div class="insight-content">
+                        <h4>Executive Diagnostic Finding:</h4>
+                        <p>While top-line gross revenue exhibits healthy growth (+51.4% over 4 years), <strong>$156,131 in potential profit was wiped out</strong> by 1,871 negative-margin transactions. The root causes are uncontrolled discounting (>20%) and unprofitable furniture categories (Tables losing -$17.7k). Implementing policy guardrails can recover over <strong>+$78,000 in bottom-line profit</strong> within 12 months.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 2: REVENUE TRAJECTORY -->
+            <section class="tab-pane" id="tab-trends">
+                <div class="chart-card full-width">
+                    <div class="card-header">
+                        <div>
+                            <h3 class="card-title">Four-Year Revenue & Margin Trajectory (2015 – 2018)</h3>
+                            <p class="card-desc">Detailed multi-year trend highlighting seasonality, cyclical peaks, and order growth</p>
+                        </div>
+                    </div>
+                    <div class="chart-container large">
+                        <canvas id="chart-trajectory-deep"></canvas>
+                    </div>
+                </div>
+
+                <div class="table-card">
+                    <div class="card-header">
+                        <h3 class="card-title">Year-over-Year Growth & Profitability Scorecard</h3>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="data-table" id="table-yearly-scorecard">
+                            <thead>
+                                <tr>
+                                    <th>Fiscal Year</th>
+                                    <th>Total Revenue</th>
+                                    <th>YoY Revenue Growth</th>
+                                    <th>Net Profit</th>
+                                    <th>YoY Profit Growth</th>
+                                    <th>Net Margin</th>
+                                    <th>Unique Orders</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>FY 2015</strong></td>
+                                    <td>$484,248</td>
+                                    <td>Baseline</td>
+                                    <td>$49,544</td>
+                                    <td>Baseline</td>
+                                    <td><span class="badge badge-emerald">10.2%</span></td>
+                                    <td>969</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>FY 2016</strong></td>
+                                    <td>$470,533</td>
+                                    <td>-2.8%</td>
+                                    <td>$61,619</td>
+                                    <td>+24.4%</td>
+                                    <td><span class="badge badge-emerald">13.1%</span></td>
+                                    <td>1,038</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>FY 2017</strong></td>
+                                    <td>$609,206</td>
+                                    <td>+29.5%</td>
+                                    <td>$81,795</td>
+                                    <td>+32.7%</td>
+                                    <td><span class="badge badge-emerald">13.4%</span></td>
+                                    <td>1,315</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>FY 2018</strong></td>
+                                    <td>$733,215</td>
+                                    <td>+20.4%</td>
+                                    <td>$93,439</td>
+                                    <td>+14.2%</td>
+                                    <td><span class="badge badge-emerald">12.7%</span></td>
+                                    <td>1,687</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 3: CATEGORY & PRODUCTS -->
+            <section class="tab-pane" id="tab-products">
+                <div class="grid-2-cols">
+                    <div class="chart-card">
+                        <div class="card-header">
+                            <div>
+                                <h3 class="card-title">Sub-Category Net Profit / Loss Breakdown</h3>
+                                <p class="card-desc">Red indicates negative bottom-line bleeders</p>
+                            </div>
+                        </div>
+                        <div class="chart-container large">
+                            <canvas id="chart-subcat-perf"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="chart-card">
+                        <div class="card-header">
+                            <div>
+                                <h3 class="card-title">Top 5 Star Products vs Top 5 Bleeders</h3>
+                                <p class="card-desc">Net profit generated vs profit destroyed per product line</p>
+                            </div>
+                        </div>
+                        <div class="chart-container large">
+                            <canvas id="chart-stars-bleeders"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 4: REGIONAL MARKETS -->
+            <section class="tab-pane" id="tab-regional">
+                <div class="grid-2-cols">
+                    <div class="chart-card">
+                        <div class="card-header">
+                            <div>
+                                <h3 class="card-title">Regional Revenue & Margin Comparison</h3>
+                                <p class="card-desc">Central region underperforms due to excessive local discounting</p>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="chart-regional-bars"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="chart-card">
+                        <div class="card-header">
+                            <div>
+                                <h3 class="card-title">State Profitability Outliers</h3>
+                                <p class="card-desc">California & NY lead profits; Texas & Illinois lead losses</p>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="chart-state-extremes"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 5: DISCOUNT PROFIT LEAKS -->
+            <section class="tab-pane" id="tab-discounts">
+                <div class="grid-2-cols">
+                    <div class="chart-card">
+                        <div class="card-header">
+                            <div>
+                                <h3 class="card-title">Net Margin by Discount Bracket</h3>
+                                <p class="card-desc">Discounts above 20% induce severe financial losses</p>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="chart-discount-brackets"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="summary-card">
+                        <div class="card-header">
+                            <h3 class="card-title">The Discount Erosion Anatomy</h3>
+                        </div>
+                        <div class="erosion-breakdown">
+                            <div class="erosion-row">
+                                <div class="erosion-label">
+                                    <strong>No Discount (0%)</strong>
+                                    <span>Standard List Price</span>
+                                </div>
+                                <div class="erosion-stats">
+                                    <span class="badge badge-emerald">+30.2% Net Margin</span>
+                                    <span class="subtext">$204k Profit Generated</span>
+                                </div>
+                            </div>
+
+                            <div class="erosion-row">
+                                <div class="erosion-label">
+                                    <strong>Low Discount (1% - 15%)</strong>
+                                    <span>Moderate Promotion</span>
+                                </div>
+                                <div class="erosion-stats">
+                                    <span class="badge badge-emerald">+14.8% Net Margin</span>
+                                    <span class="subtext">$72k Profit Generated</span>
+                                </div>
+                            </div>
+
+                            <div class="erosion-row">
+                                <div class="erosion-label">
+                                    <strong>Moderate Discount (16% - 30%)</strong>
+                                    <span>Aggressive Clearance</span>
+                                </div>
+                                <div class="erosion-stats">
+                                    <span class="badge badge-amber">+5.1% Net Margin</span>
+                                    <span class="subtext">Thin Safety Buffer</span>
+                                </div>
+                            </div>
+
+                            <div class="erosion-row alert-row">
+                                <div class="erosion-label">
+                                    <strong class="text-danger">Deep Discount (> 30%)</strong>
+                                    <span class="text-danger">Severe Margin Destruction</span>
+                                </div>
+                                <div class="erosion-stats">
+                                    <span class="badge badge-rose">-46.5% Net Margin</span>
+                                    <span class="subtext text-danger">-$156k Total Lost</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 6: TURNAROUND STRATEGY -->
+            <section class="tab-pane" id="tab-strategy">
+                <div class="strategy-grid">
+                    <div class="strategy-card border-blue">
+                        <div class="strategy-num">01</div>
+                        <h3>Discount Guardrail System</h3>
+                        <p class="strategy-problem"><strong>Problem:</strong> Field reps offer up to 80% discounts without clearance, erasing $156k in profits.</p>
+                        <p class="strategy-action"><strong>Action:</strong> Implement an ERP hard stop capping standard discounts at 15%. Require VP approval for discounts &gt; 20%.</p>
+                        <div class="strategy-impact">
+                            <strong>Projected ROI:</strong> +$78,000 bottom-line profit recovery (+27.2%).
+                        </div>
+                    </div>
+
+                    <div class="strategy-card border-emerald">
+                        <div class="strategy-num">02</div>
+                        <h3>Product Rationalization</h3>
+                        <p class="strategy-problem"><strong>Problem:</strong> Tables (-$17.7k) and Bookcases (-$3.5k) lose money on every unit sold.</p>
+                        <p class="strategy-action"><strong>Action:</strong> Discontinue bleeding SKUs (Cubify 3D, Chromcraft tables); bundle furniture with high-margin copiers (37% margin).</p>
+                        <div class="strategy-impact">
+                            <strong>Projected ROI:</strong> Stops -$22,400 in ongoing operational drain.
+                        </div>
+                    </div>
+
+                    <div class="strategy-card border-indigo">
+                        <div class="strategy-num">03</div>
+                        <h3>Regional Freight Surcharges</h3>
+                        <p class="strategy-problem"><strong>Problem:</strong> Central region margin lags at 7.9% due to Texas (-$25.7k) and Illinois shipping deficits.</p>
+                        <p class="strategy-action"><strong>Action:</strong> Introduce localized freight surcharges for heavy items; replicate West region supply-chain efficiencies.</p>
+                        <div class="strategy-impact">
+                            <strong>Projected ROI:</strong> Lifts Central regional margin to 12.0% (+$20,500 profit).
+                        </div>
+                    </div>
+
+                    <div class="strategy-card border-purple">
+                        <div class="strategy-num">04</div>
+                        <h3>Corporate B2B Account Focus</h3>
+                        <p class="strategy-problem"><strong>Problem:</strong> Consumer segment exhibits low loyalty and high discount sensitivity.</p>
+                        <p class="strategy-action"><strong>Action:</strong> Pivot marketing budget toward Corporate accounts (AOV $470+) and auto-replenishment paper/toner contracts.</p>
+                        <div class="strategy-impact">
+                            <strong>Projected ROI:</strong> +10% Corporate volume adds +$71,000 revenue at 17% net margin.
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,179 @@
+{
+    "kpis": {
+        "total_sales": 2297200.86,
+        "total_profit": 286397.02,
+        "profit_margin": 12.47,
+        "total_orders": 5009,
+        "total_customers": 793,
+        "avg_order_value": 458.61,
+        "loss_transactions_count": 1871,
+        "loss_rate_percentage": 18.72,
+        "total_loss_dollars": 156131.29
+    },
+    "yearly_performance": {
+        "2015": {
+            "Sales": 484247.5,
+            "Profit": 49543.97,
+            "Orders": 969
+        },
+        "2016": {
+            "Sales": 470532.51,
+            "Profit": 61618.6,
+            "Orders": 1038
+        },
+        "2017": {
+            "Sales": 609205.6,
+            "Profit": 81795.17,
+            "Orders": 1315
+        },
+        "2018": {
+            "Sales": 733215.26,
+            "Profit": 93439.27,
+            "Orders": 1687
+        }
+    },
+    "categories": [
+        {
+            "Category": "Furniture",
+            "Sales": 741999.7953,
+            "Profit": 18451.2728,
+            "Margin": 2.49
+        },
+        {
+            "Category": "Office Supplies",
+            "Sales": 719047.032,
+            "Profit": 122490.8008,
+            "Margin": 17.04
+        },
+        {
+            "Category": "Technology",
+            "Sales": 836154.033,
+            "Profit": 145454.9481,
+            "Margin": 17.4
+        }
+    ],
+    "regions": [
+        {
+            "Region": "Central",
+            "Sales": 501239.8908,
+            "Profit": 39706.3625,
+            "Margin": 7.92
+        },
+        {
+            "Region": "East",
+            "Sales": 678781.24,
+            "Profit": 91522.78,
+            "Margin": 13.48
+        },
+        {
+            "Region": "South",
+            "Sales": 391721.905,
+            "Profit": 46749.4303,
+            "Margin": 11.93
+        },
+        {
+            "Region": "West",
+            "Sales": 725457.8245,
+            "Profit": 108418.4489,
+            "Margin": 14.94
+        }
+    ],
+    "subcategories_loss_making": [
+        {
+            "Sub-Category": "Supplies",
+            "Sales": 46673.538,
+            "Profit": -1189.0995
+        },
+        {
+            "Sub-Category": "Bookcases",
+            "Sales": 114879.9963,
+            "Profit": -3472.556
+        },
+        {
+            "Sub-Category": "Tables",
+            "Sales": 206965.532,
+            "Profit": -17725.4811
+        }
+    ],
+    "top_5_products_by_revenue": [
+        {
+            "Product Name": "Canon imageCLASS 2200 Advanced Copier",
+            "Sales": 61599.824,
+            "Profit": 25199.928
+        },
+        {
+            "Product Name": "Fellowes PB500 Electric Punch Plastic Comb Binding Machine with Manual Bind",
+            "Sales": 27453.384,
+            "Profit": 7753.039
+        },
+        {
+            "Product Name": "Cisco TelePresence System EX90 Videoconferencing Unit",
+            "Sales": 22638.48,
+            "Profit": -1811.0784
+        },
+        {
+            "Product Name": "HON 5400 Series Task Chairs for Big and Tall",
+            "Sales": 21870.576,
+            "Profit": 1.1368683772161603e-13
+        },
+        {
+            "Product Name": "GBC DocuBind TL300 Electric Binding System",
+            "Sales": 19823.479,
+            "Profit": 2233.5051000000003
+        }
+    ],
+    "top_5_products_by_profit": [
+        {
+            "Product Name": "Canon imageCLASS 2200 Advanced Copier",
+            "Sales": 61599.824,
+            "Profit": 25199.928
+        },
+        {
+            "Product Name": "Fellowes PB500 Electric Punch Plastic Comb Binding Machine with Manual Bind",
+            "Sales": 27453.384,
+            "Profit": 7753.039
+        },
+        {
+            "Product Name": "Hewlett Packard LaserJet 3310 Copier",
+            "Sales": 18839.686,
+            "Profit": 6983.8836
+        },
+        {
+            "Product Name": "Canon PC1060 Personal Laser Copier",
+            "Sales": 11619.834,
+            "Profit": 4570.9347
+        },
+        {
+            "Product Name": "HP Designjet T520 Inkjet Large Format Printer - 24\" Color",
+            "Sales": 18374.895,
+            "Profit": 4094.9766
+        }
+    ],
+    "bottom_5_loss_products": [
+        {
+            "Product Name": "Cubify CubeX 3D Printer Double Head Print",
+            "Sales": 11099.963,
+            "Profit": -8879.9704
+        },
+        {
+            "Product Name": "Lexmark MX611dhe Monochrome Laser Printer",
+            "Sales": 16829.901,
+            "Profit": -4589.973
+        },
+        {
+            "Product Name": "Cubify CubeX 3D Printer Triple Head Print",
+            "Sales": 7999.98,
+            "Profit": -3839.9904
+        },
+        {
+            "Product Name": "Chromcraft Bull-Nose Wood Oval Conference Tables & Bases",
+            "Sales": 9917.64,
+            "Profit": -2876.1156
+        },
+        {
+            "Product Name": "Bush Advantage Collection Racetrack Conference Table",
+            "Sales": 9544.725,
+            "Profit": -1934.3976
+        }
+    ]
+}
